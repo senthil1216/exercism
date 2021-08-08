@@ -1,12 +1,12 @@
 class Pangram
-  ALPHA = 'abcdefghijklmnopqrstuvwxyz'
+  ALPHA = 'abcdefghijklmnopqrstuvwxyz'.freeze
   def self.pangram?(sentence)
-    sentence.downcase
-      .split("")
-      .uniq
-      .sort
-      .join("")
-      .strip
-      .include?ALPHA
+    sentence = sentence.downcase
+                .gsub(/[^a-z]/,"")
+                .split("")
+                .sort
+                .uniq
+                .join("")
+    sentence == ALPHA
   end
 end
